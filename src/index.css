@@ -1,0 +1,7 @@
+@font-face {
+  font-family: Gliker;
+  src: url(./assets/fonts/Gliker-SemiBold.ttf);
+}
+
+@import "tailwindcss";
+

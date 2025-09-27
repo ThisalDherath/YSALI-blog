@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import FullPageNavigation from "./navbar";
-import LiquidEther from "./LiquidEther";
+import FullPageNavigation from "../components/navbar";
+import LiquidEther from "../components/LiquidEther";
+import SplashCursor from "../components/SplashCursor";
 
 export default function Home() {
   const [liquidKey, setLiquidKey] = useState(0);
+  const [SplashCursorVisible, setSplashCursorVisible] = useState(true);
 
   // Restart LiquidEther every 5 minutes to prevent memory leaks
   useEffect(() => {
@@ -19,6 +21,10 @@ export default function Home() {
       className="min-h-screen w-full bg-black select-none" 
       style={{ position: "relative", overflow: "hidden" }}
     >
+      <SplashCursor 
+        isVisible={SplashCursorVisible} 
+        onVisibilityChange={setSplashCursorVisible} 
+      />  
       {/* LiquidEther with key prop to force remount */}
       <div style={{ 
         position: "absolute", 

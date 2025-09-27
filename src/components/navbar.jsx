@@ -41,21 +41,29 @@ const FullPageNavigation = () => {
         {/* Menu Button */}
         <button
           onClick={toggleNav}
-          className="relative w-7 h-7 sm:w-8 sm:h-8 flex flex-col justify-center items-center group focus:outline-none"
+          className="relative w-12 h-12 sm:w-14 sm:h-14 flex flex-col justify-center items-center group focus:outline-none rounded-full bg-purple-500 overflow-hidden"
           aria-label="Toggle navigation"
         >
+          {/* Background color animation layers */}
+          <div className="absolute inset-0 bg-transparent transition-all duration-300 ease-out group-hover:bg-green-200 group-hover:translate-y-0 translate-y-full" 
+               style={{ transitionDelay: '0ms' }} />
+          <div className="absolute inset-0 bg-transparent transition-all duration-300 ease-out group-hover:bg-yellow-200 group-hover:translate-y-0 translate-y-full" 
+               style={{ transitionDelay: '200ms' }} />
+          <div className="absolute inset-0 bg-transparent transition-all duration-300 ease-out group-hover:bg-purple-500 group-hover:translate-y-0 translate-y-full" 
+               style={{ transitionDelay: '300ms' }} />
+          
           <span
-            className={`block w-5 sm:w-6 h-0.5 bg-gray-800 transition-all duration-500 ease-out ${
+            className={`relative z-10 block w-5 sm:w-6 h-0.5 bg-gray-800 transition-all duration-500 ease-out ${
               isOpen ? "rotate-45 translate-y-0.5" : ""
             }`}
           />
           <span
-            className={`block w-5 sm:w-6 h-0.5 bg-gray-800 transition-all duration-500 ease-out mt-1 ${
+            className={`relative z-10 block w-5 sm:w-6 h-0.5 bg-gray-800 transition-all duration-500 ease-out mt-1 ${
               isOpen ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block w-5 sm:w-6 h-0.5 bg-gray-800 transition-all duration-500 ease-out mt-1 ${
+            className={`relative z-10 block w-5 sm:w-6 h-0.5 bg-gray-800 transition-all duration-500 ease-out mt-1 ${
               isOpen ? "-rotate-45 -translate-y-2" : ""
             }`}
           />

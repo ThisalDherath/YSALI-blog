@@ -21,10 +21,7 @@ export default function Home() {
       className="min-h-screen w-full bg-black select-none" 
       style={{ position: "relative", overflow: "hidden" }}
     >
-      <SplashCursor 
-        isVisible={SplashCursorVisible} 
-        onVisibilityChange={setSplashCursorVisible} 
-      />  
+     
       {/* LiquidEther with key prop to force remount */}
       <div style={{ 
         position: "absolute", 

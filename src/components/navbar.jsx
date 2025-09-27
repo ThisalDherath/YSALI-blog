@@ -77,7 +77,9 @@ const FullPageNavigation = () => {
         }`}
         style={{
           clipPath: isOpen
-            ? "ellipse(150% 120% at 50% 0%)"
+            ? window.innerWidth < 768 
+              ? "ellipse(300% 140% at 50% 0%)"
+              : "ellipse(150% 120% at 50% 0%)"
             : "ellipse(0% 0% at 50% 0%)",
           transition: "clip-path 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
         }}

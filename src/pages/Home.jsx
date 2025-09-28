@@ -40,6 +40,7 @@ export default function Home() {
       <div
         style={{
           position: "absolute",
+          backgroundColor: "#0f0f0fff",
           top: 0,
           left: 0,
           width: "100%",
@@ -102,7 +103,7 @@ export default function Home() {
                 containerHeight={isLaptop ? "600px" : "600px"}
                 containerWidth={isLaptop ? "600px" : "600px"}
                 imageHeight={isLaptop ? "600px" : "600px"}
-                imageWidth={isLaptop ? "800px" : "800px"}
+                imageWidth={isLaptop ? "700px" : "700px"}
                 autoplay={true}
                 muted={true}
                 loop={true}

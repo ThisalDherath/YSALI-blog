@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-
+import DomeGallery from '../components/DomeGallery';
 // LoadingPage Component
 const words = ["Hello", "ආයුබෝවන්", "வணக்கம்", "नमस्ते", "নমস্কার", "नमस्कार", "السلام علیکم", "ਸਤ ਸ੍ਰੀ ਅਕਾਲ", "કુશળ મંગળ", "नमस्कार"];
 
@@ -93,9 +93,9 @@ const LoadingPage = ({ onLoadingComplete }) => {
             variants={opacity}
             initial="initial"
             animate="enter"
-            className="flex items-center text-black text-4xl md:text-5xl lg:text-6xl absolute z-10 font-medium"
+            className="flex items-center text-[#ffffff] text-4xl md:text-5xl lg:text-6xl absolute z-10 font-medium"
           >
-            <h1 className="text-5xl md:text-5xl lg:text-6xl font-weight-900 drop-shadow-2xl">
+            <h1 className="text-5xl md:text-5xl lg:text-6xl font-black drop-shadow-2xl">
               {words[index]}
             </h1>
           </motion.p>
@@ -104,7 +104,7 @@ const LoadingPage = ({ onLoadingComplete }) => {
               variants={curve}
               initial="initial"
               animate={isExiting ? "exit" : "initial"}
-              fill="#ffffffff"
+              fill="#0f0f0fff"
             />
           </svg>
         </>

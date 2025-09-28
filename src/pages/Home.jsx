@@ -195,76 +195,89 @@ export default function Home() {
               </div>
             )}
 
-            {/* Mobile Layout - Based on provided image */}
+            {/* Mobile Layout - Centered with text over card */}
             {isMobile && (
-              <div className="flex flex-col items-center text-center px-6">
-                {/* Card at top */}
-                <div 
-                  className="mb-8"
-                  style={{ 
-                    zIndex: 1,
-                    pointerEvents: "auto",
-                  }}
-                >
-                  <TiltedCard
-                    mediaType="cloudinary-video"
-                    videoSrc="https://res.cloudinary.com/djugx3lpe/video/upload/v1759017126/SnapInsta.to_AQORT37ZH8oPw7LAS72hCriOSKjdCUN2KhxGog_1R6P7Mh2nRwfPaxt0Vu6tIAOD63wSauUWc6dD3xVDLC4PmnEaeyVA-H4iKPmywUs_d5ftb9.mp4"
-                    altText="Cloudinary Video"
-                    captionText="Our Journey"
-                    containerHeight="350px"
-                    containerWidth="320px"
-                    imageHeight="350px"
-                    imageWidth="320px"
-                    autoplay={true}
-                    muted={true}
-                    loop={true}
-                    controls={false}
-                    disableTilt={true}
-                  />
-                </div>
-
-                {/* Text below card */}
-                <h1
-                  className="text-white mb-6"
-                  style={{
-                    fontFamily: "Gliker, sans-serif",
-                    fontWeight: "900",
-                    textShadow: "0 6px 30px rgba(0,0,0,0.8)",
-                    letterSpacing: "-0.02em",
-                    pointerEvents: "none"
-                  }}
-                >
-                  <div className="text-5xl leading-tight mb-1">
-                    conversion
-                  </div>
-                  <div className="text-5xl leading-tight mb-1">
-                    through
-                  </div>
+              <div className="flex flex-col items-center justify-center text-center px-6">
+                <div className="relative flex items-center justify-center">
+                  {/* Card with rounded corners wrapper */}
                   <div 
-                    className="text-5xl leading-tight"
+                    className="rounded-3xl overflow-hidden"
                     style={{ 
-                      background: "linear-gradient(135deg, #FFD700, #FFA500)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
+                      zIndex: 1,
+                      pointerEvents: "auto",
+                      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)"
                     }}
                   >
-                    immersion
+                    <div style={{ transform: "scale(1.3)", transformOrigin: "center" }}>
+                      <TiltedCard
+                        mediaType="cloudinary-video"
+                        videoSrc="https://res.cloudinary.com/djugx3lpe/video/upload/v1759017126/SnapInsta.to_AQORT37ZH8oPw7LAS72hCriOSKjdCUN2KhxGog_1R6P7Mh2nRwfPaxt0Vu6tIAOD63wSauUWc6dD3xVDLC4PmnEaeyVA-H4iKPmywUs_d5ftb9.mp4"
+                        altText="Cloudinary Video"
+                        captionText="Our Journey"
+                        containerHeight="450px"
+                        containerWidth="400px"
+                        imageHeight="450px"
+                        imageWidth="400px"
+                        autoplay={true}
+                        muted={true}
+                        loop={true}
+                        controls={false}
+                        disableTilt={true}
+                      />
+                    </div>
                   </div>
-                </h1>
 
-                {/* Button below text */}
-                <button
-                  className="px-8 py-4 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105"
-                  style={{
-                    background: "linear-gradient(135deg, #FFD700, #FFA500)",
-                    color: "#000",
-                    boxShadow: "0 4px 20px rgba(255, 215, 0, 0.4)",
-                    pointerEvents: "auto"
-                  }}
-                >
-                  Discover what we do
-                </button>
+                  {/* Text overlay on card */}
+                  <div 
+                    className="absolute"
+                    style={{
+                      zIndex: 3,
+                      pointerEvents: "none"
+                    }}
+                  >
+                    <h1
+                      className="text-white"
+                      style={{
+                        fontFamily: "Gliker, sans-serif",
+                        fontWeight: "900",
+                        textShadow: "0 6px 30px rgba(0,0,0,0.8)",
+                        letterSpacing: "-0.02em",
+                        pointerEvents: "none"
+                      }}
+                    >
+                      <div className="text-6xl leading-tight mb-0">
+                        conversion
+                      </div>
+                      <div className="text-6xl leading-tight mb-0">
+                        through
+                      </div>
+                      <div 
+                        className="text-6xl leading-tight mb-4"
+                        style={{ 
+                          background: "linear-gradient(135deg, #FFD700, #FFA500)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text",
+                        }}
+                      >
+                        immersion
+                      </div>
+                    </h1>
+                    
+                    {/* Button below text, still over card */}
+                    <button
+                      className="px-8 py-4 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105"
+                      style={{
+                        background: "linear-gradient(135deg, #FFD700, #FFA500)",
+                        color: "#000",
+                        boxShadow: "0 4px 20px rgba(255, 215, 0, 0.4)",
+                        pointerEvents: "auto"
+                      }}
+                    >
+                      Discover what we do
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>

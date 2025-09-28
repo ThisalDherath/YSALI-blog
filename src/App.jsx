@@ -12,7 +12,7 @@ export default function App() {
 
   
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen ">
       {/* Loading screen */}
       {isLoading && <LoadingPage onLoadingComplete={handleLoadingComplete} />}
       

@@ -5,13 +5,28 @@ import TiltedCard from "../components/TiltedCard";
 
 export default function Home() {
   const [liquidKey, setLiquidKey] = useState(0);
-  const [SplashCursorVisible, setSplashCursorVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLaptop, setIsLaptop] = useState(false);
+
+  // Check screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsLaptop(width >= 768 && width < 1600);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   // Restart LiquidEther every 5 minutes to prevent memory leaks
   useEffect(() => {
     const interval = setInterval(() => {
       setLiquidKey((prev) => prev + 1);
-    }, 5 * 60 * 1000); // 5 minutes
+    }, 5 * 60 * 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -21,7 +36,7 @@ export default function Home() {
       className="min-h-screen w-full bg-black select-none"
       style={{ position: "relative", overflow: "hidden" }}
     >
-      {/* LiquidEther with key prop to force remount */}
+      {/* LiquidEther Background */}
       <div
         style={{
           position: "absolute",
@@ -35,7 +50,7 @@ export default function Home() {
         }}
       >
         <LiquidEther
-          key={liquidKey} // This forces a complete remount
+          key={liquidKey}
           colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
           mouseForce={25}
           cursorSize={80}
@@ -54,45 +69,229 @@ export default function Home() {
         />
       </div>
 
-      {/* Rest of your components */}
-      <div style={{ position: "relative", zIndex: 3 }}>
+      {/* Navigation */}
+      <div style={{ position: "relative", zIndex: 10 }}>
         <FullPageNavigation />
       </div>
 
+      {/* Main Content Container */}
       <div
         className="flex items-center justify-center min-h-screen w-full"
         style={{ position: "relative", zIndex: 2 }}
       >
-        <h1
-          className="text-4xl sm:text-6xl text-white"
-          style={{
-            fontFamily: "Gliker, sans-serif",
-            textShadow: "0 2px 10px rgba(0,0,0,0.3)",
-            zIndex: 2,
-          }}
-        >
-          Day in YSALI
-        </h1>
+        <div className="relative w-full h-full flex items-center justify-center px-4 md:px-8 lg:px-16">
+          
+          {/* Card Container - Position varies by screen size */}
+          {!isMobile && (
+            <div 
+              className="absolute"
+              style={{ 
+                perspective: "1000px",
+                zIndex: 1,
+                pointerEvents: "auto",
+                left: isLaptop ? "50%" : "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)"
+              }}
+            >
+              <TiltedCard
+                mediaType="cloudinary-video"
+                videoSrc="https://res.cloudinary.com/djugx3lpe/video/upload/v1759017126/SnapInsta.to_AQORT37ZH8oPw7LAS72hCriOSKjdCUN2KhxGog_1R6P7Mh2nRwfPaxt0Vu6tIAOD63wSauUWc6dD3xVDLC4PmnEaeyVA-H4iKPmywUs_d5ftb9.mp4"
+                altText="Cloudinary Video"
+                captionText="Our Journey"
+                containerHeight={isLaptop ? "600px" : "600px"}
+                containerWidth={isLaptop ? "600px" : "600px"}
+                imageHeight={isLaptop ? "600px" : "600px"}
+                imageWidth={isLaptop ? "800px" : "800px"}
+                autoplay={true}
+                muted={true}
+                loop={true}
+                controls={false}
+                disableTilt={false}
+              />
+            </div>
+          )}
+
+          {/* Content Wrapper */}
+          <div 
+            className="relative w-full"
+            style={{ 
+              zIndex: 5,
+              pointerEvents: "none"
+            }}
+          >
+            {/* Desktop/Laptop Layout */}
+            {!isMobile && (
+              <div 
+                className="flex flex-col"
+              >
+                <h1
+                  className="text-white"
+                  style={{
+                    fontFamily: "Gliker, sans-serif",
+                    fontWeight: "900",
+                    textShadow: "0 6px 30px rgba(0,0,0,0.8)",
+                    letterSpacing: "-0.02em",
+                    pointerEvents: "none"
+                  }}
+                >
+                  {/* First line - "stories" with left margin */}
+                  <div 
+                    className="leading-[0.85]"
+                    style={{ 
+                      marginLeft: isLaptop ? "30rem" : "40rem",
+                      fontSize: isLaptop ? "9rem" : "11rem",
+                      pointerEvents: "none"
+                    }}
+                  >
+                    stories
+                  </div>
+                  
+                  {/* Second line - "through" with button on same line */}
+                  <div 
+                    className="flex items-center justify-between leading-[0.85]"
+                    style={{ 
+                      pointerEvents: "none"
+                    }}
+                  >
+                    <div 
+                      style={{ 
+                        marginLeft: isLaptop ? "20rem" : "27rem",
+                        fontSize: isLaptop ? "9rem" : "11rem",
+                        pointerEvents: "none"
+                      }}
+                    >
+                      through
+                    </div>
+                    
+                    <button
+                      className="px-6 md:px-8 py-3 md:py-4 rounded-full text-sm md:text-base lg:text-lg font-semibold transition-all duration-300 hover:scale-105 ml-4 whitespace-nowrap"
+                      style={{
+                        background: "linear-gradient(135deg, #FFD700, #FFA500)",
+                        color: "#000",
+                        boxShadow: "0 4px 20px rgba(255, 215, 0, 0.4)",
+                        pointerEvents: "auto",
+                        marginRight: isLaptop ? "10rem" : "20rem"
+                      }}
+                    >
+                      Discover our journey
+                    </button>
+                  </div>
+
+                  {/* Third line - "experience" heavily indented */}
+                  <div 
+                    className="leading-[0.85]"
+                    style={{ 
+                      marginLeft: isLaptop ? "35rem" : "35rem",
+                      fontSize: isLaptop ? "9rem" : "11rem",
+                      backgroundClip: "text",
+                      pointerEvents: "none"
+                    }}
+                  >
+                    experience
+                  </div>
+                </h1>
+              </div>
+            )}
+
+            {/* Mobile Layout - Based on provided image */}
+            {isMobile && (
+              <div className="flex flex-col items-center text-center px-6">
+                {/* Card at top */}
+                <div 
+                  className="mb-8"
+                  style={{ 
+                    zIndex: 1,
+                    pointerEvents: "auto",
+                  }}
+                >
+                  <TiltedCard
+                    mediaType="cloudinary-video"
+                    videoSrc="https://res.cloudinary.com/djugx3lpe/video/upload/v1759017126/SnapInsta.to_AQORT37ZH8oPw7LAS72hCriOSKjdCUN2KhxGog_1R6P7Mh2nRwfPaxt0Vu6tIAOD63wSauUWc6dD3xVDLC4PmnEaeyVA-H4iKPmywUs_d5ftb9.mp4"
+                    altText="Cloudinary Video"
+                    captionText="Our Journey"
+                    containerHeight="350px"
+                    containerWidth="320px"
+                    imageHeight="350px"
+                    imageWidth="320px"
+                    autoplay={true}
+                    muted={true}
+                    loop={true}
+                    controls={false}
+                    disableTilt={true}
+                  />
+                </div>
+
+                {/* Text below card */}
+                <h1
+                  className="text-white mb-6"
+                  style={{
+                    fontFamily: "Gliker, sans-serif",
+                    fontWeight: "900",
+                    textShadow: "0 6px 30px rgba(0,0,0,0.8)",
+                    letterSpacing: "-0.02em",
+                    pointerEvents: "none"
+                  }}
+                >
+                  <div className="text-5xl leading-tight mb-1">
+                    conversion
+                  </div>
+                  <div className="text-5xl leading-tight mb-1">
+                    through
+                  </div>
+                  <div 
+                    className="text-5xl leading-tight"
+                    style={{ 
+                      background: "linear-gradient(135deg, #FFD700, #FFA500)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    immersion
+                  </div>
+                </h1>
+
+                {/* Button below text */}
+                <button
+                  className="px-8 py-4 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: "linear-gradient(135deg, #FFD700, #FFA500)",
+                    color: "#000",
+                    boxShadow: "0 4px 20px rgba(255, 215, 0, 0.4)",
+                    pointerEvents: "auto"
+                  }}
+                >
+                  Discover what we do
+                </button>
+              </div>
+            )}
+          </div>
+
+        </div>
       </div>
+
+      {/* Scroll Indicator - Hidden on mobile */}
       <div
-        className="absolute inset-0 flex items-center justify-center"
-        style={{ perspective: "1000px", zIndex: 2 }}
+        className="hidden md:block absolute bottom-8 left-8"
+        style={{ zIndex: 5 }}
       >
-        <div className="w-102 h-102">
-          <TiltedCard
-            mediaType="cloudinary-video"
-            videoSrc="https://res.cloudinary.com/djugx3lpe/video/upload/v1759017126/SnapInsta.to_AQORT37ZH8oPw7LAS72hCriOSKjdCUN2KhxGog_1R6P7Mh2nRwfPaxt0Vu6tIAOD63wSauUWc6dD3xVDLC4PmnEaeyVA-H4iKPmywUs_d5ftb9.mp4"
-            altText="Cloudinary Video"
-            captionText="Our Journey"
-            containerHeight="400px"
-            containerWidth="400px"
-            imageHeight="500px"
-            imageWidth="500px"
-            autoplay={true}
-            muted={true}
-            loop={true}
-            controls={false}
-          />
+        <div
+          className="w-16 h-16 rounded-full border-2 border-white/30 flex items-center justify-center animate-bounce"
+        >
+          <svg
+            className="w-6 h-6 text-white/50"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
         </div>
       </div>
     </div>

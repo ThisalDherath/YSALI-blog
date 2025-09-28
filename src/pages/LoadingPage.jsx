@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import DomeGallery from '../components/DomeGallery';
+
 // LoadingPage Component
 const words = ["Hello", "ආයුබෝවන්", "வணக்கம்", "नमस्ते", "নমস্কার", "नमस्कार", "السلام علیکم", "ਸਤ ਸ੍ਰੀ ਅਕਾਲ", "કુશળ મંગળ", "नमस्कार"];
 
@@ -94,6 +95,11 @@ const LoadingPage = ({ onLoadingComplete }) => {
             initial="initial"
             animate="enter"
             className="flex items-center text-[#ffffff] text-4xl md:text-5xl lg:text-6xl absolute z-10 font-medium"
+            style={{
+              top: dimension.width < 768 ? '45%' : '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)'
+            }}
           >
             <h1 className="text-5xl md:text-5xl lg:text-6xl font-black drop-shadow-2xl">
               {words[index]}

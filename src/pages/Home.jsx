@@ -215,7 +215,7 @@ export default function Home() {
                         altText="Cloudinary Video"
                         captionText="Our Journey"
                         containerHeight="450px"
-                        containerWidth="400px"
+                        containerWidth="350px"
                         imageHeight="450px"
                         imageWidth="400px"
                         autoplay={true}

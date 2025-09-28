@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
+// LoadingPage Component
 const words = ["Hello", "ආයුබෝවන්", "வணக்கம்", "नमस्ते", "নমস্কার", "नमस्कार", "السلام علیکم", "ਸਤ ਸ੍ਰੀ ਅਕਾਲ", "કુશળ મંગળ", "नमस्कार"];
 
-// Animation variants from TSX file
 const opacity = {
   initial: {
     opacity: 0,
@@ -32,20 +32,18 @@ const slideUp = {
 };
 
 const LoadingPage = ({ onLoadingComplete }) => {
-  const [index, setIndex] = useState(0);
-  const [dimension, setDimension] = useState({ width: 0, height: 0 });
-  const [isExiting, setIsExiting] = useState(false);
+  const [index, setIndex] = React.useState(0);
+  const [dimension, setDimension] = React.useState({ width: 0, height: 0 });
+  const [isExiting, setIsExiting] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setDimension({ width: window.innerWidth, height: window.innerHeight });
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (index === words.length - 1) {
-      // Start exit animation after showing the last word
       setTimeout(() => {
         setIsExiting(true);
-        // Call onLoadingComplete after exit animation
         setTimeout(() => {
           onLoadingComplete && onLoadingComplete();
         }, 1000);
@@ -97,8 +95,7 @@ const LoadingPage = ({ onLoadingComplete }) => {
             animate="enter"
             className="flex items-center text-white text-4xl md:text-5xl lg:text-6xl absolute z-10 font-medium"
           >
-            
-            <h1 className="text-5xl md:text-5xl lg:text-6xl tracking-tight leading-none drop-shadow-2xl">
+            <h1 className="text-5xl md:text-5xl lg:text-6xl font-weight-800 drop-shadow-2xl">
               {words[index]}
             </h1>
           </motion.p>

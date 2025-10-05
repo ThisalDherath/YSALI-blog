@@ -164,15 +164,7 @@ const Masonry = ({
   }, [grid, imagesReady, stagger, animateFrom, blurToFocus, duration, ease]);
 
   const handleMouseEnter = (id, element) => {
-    if (expandedItem) return; // Don't animate on hover if expanded
-    const imageDiv = element.querySelector('div');
-    if (imageDiv) {
-      gsap.to(imageDiv, {
-        filter: 'grayscale(0%)',
-        duration: 0.15,
-        ease: 'power2.out'
-      });
-    }
+    if (expandedItem) return;
     if (scaleOnHover) {
       gsap.to(`[data-key="${id}"]`, {
         scale: hoverScale,
@@ -187,15 +179,7 @@ const Masonry = ({
   };
 
   const handleMouseLeave = (id, element) => {
-    if (expandedItem) return; // Don't animate on hover if expanded
-    const imageDiv = element.querySelector('div');
-    if (imageDiv) {
-      gsap.to(imageDiv, {
-        filter: 'grayscale(100%)',
-        duration: 0.15,
-        ease: 'power2.out'
-      });
-    }
+    if (expandedItem) return;
     if (scaleOnHover) {
       gsap.to(`[data-key="${id}"]`, {
         scale: 1,
@@ -216,7 +200,6 @@ const Masonry = ({
     
     const { item, element } = expandedItemRef.current;
     
-    // Collapse back to original position
     gsap.to(element, {
       x: item.x,
       y: item.y,
@@ -235,7 +218,6 @@ const Masonry = ({
     const imageDiv = element.querySelector('div');
     if (imageDiv) {
       gsap.to(imageDiv, {
-        filter: 'grayscale(100%)',
         borderRadius: '10px',
         duration: 0.6,
         ease: 'power3.inOut'
@@ -248,14 +230,11 @@ const Masonry = ({
     const element = event.currentTarget;
     
     if (expandedItem === item.id) {
-      // Already expanded, do nothing on image click
       return;
     }
     
-    // Store reference for overlay click handler
     expandedItemRef.current = { item, element };
     
-    // Expand to center of screen
     const containerRect = containerRef.current.getBoundingClientRect();
     
     const targetWidth = Math.min(window.innerWidth * 0.9, 1200);
@@ -275,13 +254,12 @@ const Masonry = ({
       zIndex: 501,
       duration: 0.6,
       ease: 'power3.inOut',
-      clearProps: 'filter' // This ensures no filter is applied to the container
+      clearProps: 'filter'
     });
     
     const imageDiv = element.querySelector('div');
     if (imageDiv) {
       gsap.to(imageDiv, {
-        filter: 'grayscale(0%)',
         borderRadius: '20px',
         duration: 0.6,
         ease: 'power3.inOut'
@@ -310,8 +288,7 @@ const Masonry = ({
           <div
             className="relative w-full h-full bg-cover bg-center rounded-[10px] shadow-[0px_10px_50px_-10px_rgba(0,0,0,0.2)] uppercase text-[10px] leading-[10px] transition-all duration-300"
             style={{ 
-              backgroundImage: `url(${item.img})`,
-            //   filter: 'grayscale(100%)'
+              backgroundImage: `url(${item.img})`
             }}
           >
             {colorShiftOnHover && (

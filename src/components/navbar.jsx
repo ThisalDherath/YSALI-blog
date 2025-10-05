@@ -191,23 +191,23 @@ const FullPageNavigation = () => {
               }}
             >
               <div className="text-purple-400 text-xs sm:text-sm mb-2">
-                GET IN TOUCH
+                With ❤️ 
               </div>
               <a
-                href="mailto:hello@poppr.be"
+                href="mailto:thisal.herath2002@gmail.com"
                 className="block text-lg sm:text-xl md:text-2xl font-bold text-gray-900 hover:text-purple-500 transition-colors duration-300 mb-1 sm:mb-2"
               >
-                hello@poppr.be
+                Thisal Herath
               </a>
               <a
-                href="tel:+32093353333"
+                href="tel:+94724191313"
                 className="block text-lg sm:text-xl md:text-2xl font-bold text-gray-900 hover:text-purple-500 transition-colors duration-300 mb-2 sm:mb-4"
               >
-                +32 (0)9 335 33 33
+                +94724191313
               </a>
               <div className="text-gray-600 text-sm sm:text-base">
-                <div>Stapelplein 70/303</div>
-                <div>9000 Ghent</div>
+                {/* <div>Stapelplein 70/303</div>
+                <div>9000 Ghent</div> */}
               </div>
             </div>
           </div>

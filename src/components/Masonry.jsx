@@ -311,7 +311,7 @@ const Masonry = ({
             className="relative w-full h-full bg-cover bg-center rounded-[10px] shadow-[0px_10px_50px_-10px_rgba(0,0,0,0.2)] uppercase text-[10px] leading-[10px] transition-all duration-300"
             style={{ 
               backgroundImage: `url(${item.img})`,
-              filter: 'grayscale(100%)'
+            //   filter: 'grayscale(100%)'
             }}
           >
             {colorShiftOnHover && (

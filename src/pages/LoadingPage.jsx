@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import DomeGallery from "../components/DomeGallery";
+
 
 // LoadingPage Component
 const words = [

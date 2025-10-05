@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import DomeGallery from '../components/DomeGallery';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import DomeGallery from "../components/DomeGallery";
 
 // LoadingPage Component
-const words = ["Hello", "ආයුබෝවන්", "வணக்கம்", "नमस्ते", "নমস্কার", "नमस्कार", "السلام علیکم", "ਸਤ ਸ੍ਰੀ ਅਕਾਲ", "કુશળ મંગળ", "नमस्कार"];
+const words = [
+  "Hello",
+  "ආයුබෝවන්",
+  "வணக்கம்",
+  "नमस्ते",
+  "নমস্কার",
+  "नमस्कार",
+  "السلام علیکم",
+  "ਸਤ ਸ੍ਰੀ ਅਕਾਲ",
+  "કુશળ મંગળ",
+  "नमस्कार",
+];
 
 const opacity = {
   initial: {
@@ -13,7 +24,7 @@ const opacity = {
     opacity: 0.55,
     transition: {
       duration: 1,
-      delay: 0.2
+      delay: 0.2,
     },
   },
 };
@@ -27,7 +38,7 @@ const slideUp = {
     transition: {
       duration: 0.8,
       ease: [0.76, 0, 0.24, 1],
-      delay: 0.2
+      delay: 0.2,
     },
   },
 };
@@ -60,15 +71,21 @@ const LoadingPage = ({ onLoadingComplete }) => {
     );
   }, [index, onLoadingComplete]);
 
-  const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height + 300} 0 ${dimension.height} L0 0`;
-  const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height} L0 0`;
+  const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
+    dimension.height
+  } Q${dimension.width / 2} ${dimension.height + 300} 0 ${
+    dimension.height
+  } L0 0`;
+  const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
+    dimension.height
+  } Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height} L0 0`;
 
   const curve = {
     initial: {
       d: initialPath,
       transition: {
         duration: 0.7,
-        ease: [0.76, 0, 0.24, 1]
+        ease: [0.76, 0, 0.24, 1],
       },
     },
     exit: {
@@ -76,7 +93,7 @@ const LoadingPage = ({ onLoadingComplete }) => {
       transition: {
         duration: 0.7,
         ease: [0.76, 0, 0.24, 1],
-        delay: 0.3
+        delay: 0.3,
       },
     },
   };
@@ -90,21 +107,19 @@ const LoadingPage = ({ onLoadingComplete }) => {
     >
       {dimension.width > 0 && (
         <>
-          <motion.p
+          <motion.h1
             variants={opacity}
             initial="initial"
             animate="enter"
-            className="flex items-center text-[#ffffff] text-4xl md:text-5xl lg:text-6xl absolute z-10 font-medium"
+            className="flex items-center text-[#ffffff] text-5xl md:text-5xl lg:text-6xl absolute z-10 font-black drop-shadow-2xl"
             style={{
-              top: dimension.width < 768 ? '45%' : '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)'
+              top: dimension.width < 768 ? "45%" : "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
             }}
           >
-            <h1 className="text-5xl md:text-5xl lg:text-6xl font-black drop-shadow-2xl">
-              {words[index]}
-            </h1>
-          </motion.p>
+            {words[index]}
+          </motion.h1>
           <svg className="absolute top-0 w-full h-[calc(100%+300px)]">
             <motion.path
               variants={curve}

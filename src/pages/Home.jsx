@@ -71,19 +71,45 @@ export default function Home() {
           /* Smooth scrolling */
           html {
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            height: 100%;
           }
           
-          /* Ensure body allows scrolling */
+          /* Ensure body allows scrolling and prevents horizontal overflow */
           body {
             overflow-x: hidden;
             overflow-y: auto;
+            max-width: 100vw;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+            height: 100%;
+          }
+
+          /* Mobile: hide horizontal scrollbar and ensure smooth scrolling */
+          @media (max-width: 768px) {
+            html, body {
+              overflow-x: hidden;
+              -webkit-overflow-scrolling: touch;
+              touch-action: pan-y;
+              width: 100%;
+              position: relative;
+            }
+            
+            * {
+              -webkit-overflow-scrolling: touch;
+            }
           }
         `
       }} />
     
       <div
         className="w-full bg-black select-none"
-        style={{ position: "relative" }}
+        style={{ 
+          position: "relative",
+          overflowX: "hidden",
+          maxWidth: "100vw",
+          width: "100%"
+        }}
       >
         {/* LiquidEther Background - Fixed positioned for all sections */}
         <div
@@ -111,19 +137,34 @@ export default function Home() {
         </div>
 
         {/* Sections Container */}
-        <div className="relative" style={{ zIndex: 2 }}>
+        <div 
+          className="relative" 
+          style={{ 
+            zIndex: 2, 
+            overflowX: "hidden",
+            width: "100%",
+            maxWidth: "100vw"
+          }}
+        >
           {/* Section 1 - Full viewport height */}
-          <div style={{ height: "100vh" }}>
+          <div style={{ height: "100vh", width: "100%" }}>
             <Section1 />
           </div>
           
-          {/* Timeline Container - This creates the scroll area for the sticky timeline */}
-          <div style={{ height: "300vh" }}>
-            {/* Section 2 will be sticky and stay in place while user scrolls through this container */}
+          {/* Section 2 - Becomes fixed when fully in view */}
+          <div 
+            style={{ 
+              position: "relative",
+              height: "200vh", // Extended height for timeline scroll
+              minHeight: "200vh",
+              width: "100%",
+              maxWidth: "100vw",
+              WebkitOverflowScrolling: "touch",
+              touchAction: "pan-y"
+            }}
+          >
             <Section2 />
           </div>
-          
-          
         </div>
       </div>
     </>

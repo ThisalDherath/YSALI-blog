@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Full Page Navigation Component
 const FullPageNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
+  const navigate = useNavigate();
 
   const toggleNav = () => {
     if (!isAnimating) {
@@ -19,13 +21,21 @@ const FullPageNavigation = () => {
   };
 
   const navItems = [
-    { id: 1, name: "work", badge: null },
-    { id: 2, name: "solutions", badge: null },
-    { id: 3, name: "about us", badge: null },
-    { id: 4, name: "insights", badge: null },
-    { id: 5, name: "careers", badge: null },
-    { id: 6, name: "contact", badge: null },
+    { id: 1, name: "home", badge: null, path: "/home" },
+    { id: 2, name: "blog", badge: null, path: "/blog" },
+    { id: 3, name: "about us", badge: null, path: "/about-us" },
+    { id: 4, name: "gallery", badge: null, path: "/gallery" },
+    { id: 5, name: "careers", badge: null, path: "/careers" },
+    { id: 6, name: "contact", badge: null, path: "/contact" },
   ];
+
+  const handleNavigation = (path) => {
+    setIsOpen(false);
+    // Small delay to allow close animation to start
+    setTimeout(() => {
+      navigate(path);
+    }, 100);
+  };
 
   return (
     <>
@@ -117,7 +127,7 @@ const FullPageNavigation = () => {
                     className="group relative inline-flex items-center justify-center md:justify-end cursor-pointer w-full"
                     onMouseEnter={() => setActiveItem(item.id)}
                     onMouseLeave={() => setActiveItem(null)}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => handleNavigation(item.path)}
                   >
                     {/* Text with individual letter spans and weaving line effect */}
                     <div className="relative flex items-center">
